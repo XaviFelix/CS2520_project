@@ -1,5 +1,5 @@
 # TODO: I need to add styling and choose a different font
-# TODO: Add Buttons
+# TODO: Now I need add functionality to the buttons
 # TODO: Add behavior to the buttons
 #       1) Open Existing Button
 #            - Open file exlporer to find file
@@ -10,15 +10,13 @@
 import sys
 
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, QWidget
-from place_holder import Color 
+from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButton
+# from place_holder import Color 
 
 
-class WelcomeWindow(QMainWindow):
-    def __init__(self):
+class WelcomeWindow(QWidget):
+    def __init__(self, switch_window):
         super().__init__()
-
-        self.setWindowTitle("My App")
 
         # Welcome message, set the alignment of it as well
         self.welcome_message = QLabel("Welcome to the Nebula FlashCard app")
@@ -35,25 +33,29 @@ class WelcomeWindow(QMainWindow):
         vertical_box.addWidget(self.welcome_message)
 
         # Add Color instances as place holders for now (should be buttons)
-        horizontal_box.addWidget(Color("Blue"))
-        horizontal_box.addWidget(Color("Red"))
+        open_existing_btn = QPushButton("Open existing deck")
+        create_new_btn = QPushButton("Create new deck")
+
+        horizontal_box.addWidget(open_existing_btn)
+        horizontal_box.addWidget(create_new_btn)
+        horizontal_box.setSpacing(200)
 
         # Add HBox (that contains buttons) to VBox
         vertical_box.addLayout(horizontal_box)
 
-        # Manages the Stacked Layout
-        widget = QWidget()
-        widget.setLayout(vertical_box)
-        self.setCentralWidget(widget)
+        # If open existing is clicked then it finds file and changes window:
+        open_existing_btn.clicked.connect(switch_window)
+        open_existing_btn.clicked.connect(self.open_existing_deck)
 
+        # If create new is clicked then it changes window and creates a new deck:
+        create_new_btn.clicked.connect(self.create_new_deck)
 
+        self.setLayout(vertical_box)
 
-# Create the app for debugging purposes
-app = QApplication(sys.argv)
+    def open_existing_deck(self):
+        print("Opening existing deck")
 
-# Create the MainWindow instance and show
-window = WelcomeWindow()
-window.show()
+        
 
-
-app.exec()
+    def create_new_deck(self):
+        print("Creating new deck")
