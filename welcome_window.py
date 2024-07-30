@@ -1,22 +1,14 @@
-# TODO: I need to add styling and choose a different font
-# TODO: Now I need add functionality to the buttons
-# TODO: Add behavior to the buttons
-#       1) Open Existing Button
-#            - Open file exlporer to find file
-#            - Make sure to add exception handling for this
-#       2) Populate to dictionary or list of Tuples
-#       3) Then switch to the second window (create this class)
-
 import sys
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButton
 # from place_holder import Color 
 
-
 class WelcomeWindow(QWidget):
-    def __init__(self, switch_window):
+    def __init__(self, switch_to_main, deck):
         super().__init__()
+
+        self.deck = deck
 
         # Welcome message, set the alignment of it as well
         self.welcome_message = QLabel("Welcome to the Nebula FlashCard app")
@@ -44,7 +36,7 @@ class WelcomeWindow(QWidget):
         vertical_box.addLayout(horizontal_box)
 
         # If open existing is clicked then it finds file and changes window:
-        open_existing_btn.clicked.connect(switch_window)
+        open_existing_btn.clicked.connect(switch_to_main)
         open_existing_btn.clicked.connect(self.open_existing_deck)
 
         # If create new is clicked then it changes window and creates a new deck:
@@ -52,10 +44,12 @@ class WelcomeWindow(QWidget):
 
         self.setLayout(vertical_box)
 
+
+    # TODO: Finish this method
     def open_existing_deck(self):
         print("Opening existing deck")
 
         
-
+    # TODO: Finish this method
     def create_new_deck(self):
         print("Creating new deck")

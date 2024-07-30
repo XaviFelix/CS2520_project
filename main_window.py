@@ -5,8 +5,10 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout,
 from place_holder import Color
 
 class MainWindow(QWidget):
-    def __init__(self, switch_window):
+    def __init__(self, deck):
         super().__init__()
+
+        self.deck = deck
 
         self.setWindowTitle("My App")
 
