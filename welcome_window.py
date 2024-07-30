@@ -11,7 +11,7 @@ import sys
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, QWidget
-from layout_colorwidget import Color 
+from place_holder import Color 
 
 
 class WelcomeWindow(QMainWindow):
@@ -35,7 +35,7 @@ class WelcomeWindow(QMainWindow):
         vertical_box.addWidget(self.welcome_message)
 
         # Add Color instances as place holders for now (should be buttons)
-        horizontal_box.addWidget(Color("Green"))
+        horizontal_box.addWidget(Color("Blue"))
         horizontal_box.addWidget(Color("Red"))
 
         # Add HBox (that contains buttons) to VBox
