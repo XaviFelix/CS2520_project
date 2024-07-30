@@ -1,4 +1,5 @@
-import sys
+import tkinter as tk
+from tkinter import filedialog
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButton
@@ -45,9 +46,28 @@ class WelcomeWindow(QWidget):
         self.setLayout(vertical_box)
 
 
-    # TODO: Finish this method
+    # TODO: continue testing, add exception handling later
     def open_existing_deck(self):
         print("Opening existing deck")
+
+        # Accepted file types
+        file_path = filedialog.askopenfilename(
+            filetypes=[("Text files", "*.txt")]
+        )
+
+        # Open and read a selected txt file
+        if file_path:
+            with open(file_path, 'r') as file:
+
+                # Line gets split to create a key,value pair for dictionary (deck)
+                for line in file:
+                    parts = line.strip().split(',', 1)  
+                    if len(parts) == 2:
+                        sentence, answer = parts
+                        self.deck[sentence] = answer
+        
+        # Print deck to console for debugging purposes
+        print("Deck:", self.deck)
 
         
     # TODO: Finish this method
