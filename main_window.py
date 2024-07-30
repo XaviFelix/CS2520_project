@@ -26,8 +26,9 @@ class MainWindow(QWidget):
         back_btn = QPushButton("Back")
         next_btn = QPushButton("Next")
 
+        # button functions
         # back_btn.clicked.connect()
-        # next_btn.clicked.connect()
+        next_btn.clicked.connect(self.change_card)
 
 
         # Add buttons to the first button layout
@@ -46,6 +47,9 @@ class MainWindow(QWidget):
         vertical_box.addLayout(horizontal_box_btns2)
 
         self.setLayout(vertical_box)
+
+    def change_card(self):
+        print("changing card")
 
 
 

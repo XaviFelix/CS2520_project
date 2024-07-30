@@ -63,8 +63,8 @@ class WelcomeWindow(QWidget):
                 for line in file:
                     parts = line.strip().split(',', 1)  
                     if len(parts) == 2:
-                        sentence, answer = parts
-                        self.deck[sentence] = answer
+                        question, answer = parts
+                        self.deck.append((question, answer))
         
         # Print deck to console for debugging purposes
         print("Deck:", self.deck)

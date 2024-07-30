@@ -16,7 +16,8 @@ class StackedWindows(QMainWindow):
         super().__init__()
 
         # A shared dictionary
-        my_deck  = {}
+        my_deck  = []
+        current_index = 0
 
         # Set up title and a fixed size
         self.setWindowTitle("Nebula Flash")
