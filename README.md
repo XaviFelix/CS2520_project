@@ -1,4 +1,4 @@
-# CS2520_project: Flash Card Program (Nebula Flash)
+# CS2520_project: Flash Card Program (Nebula)
 
 ## Overview
 This repository contains the code for my flashcard program. This project aims to explore the nuances 
