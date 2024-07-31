@@ -1,4 +1,4 @@
-import tkinter as tk
+# import tkinter as tk
 from tkinter import filedialog
 
 from PyQt6.QtCore import QSize, Qt
@@ -49,7 +49,7 @@ class WelcomeWindow(QWidget):
     # TODO: continue testing, add exception handling later
     def open_existing_deck(self):
         print("Opening existing deck")
-
+        self.deck.clear()
         # Accepted file types
         file_path = filedialog.askopenfilename(
             filetypes=[("Text files", "*.txt")]
@@ -69,7 +69,6 @@ class WelcomeWindow(QWidget):
         # Print deck to console for debugging purposes
         print("Deck:", self.deck)
 
-        
     # TODO: Finish this method
     def create_new_deck(self):
         print("Creating new deck")

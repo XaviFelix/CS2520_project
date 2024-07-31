@@ -16,8 +16,8 @@ class StackedWindows(QMainWindow):
         super().__init__()
 
         # A shared dictionary
-        my_deck  = []
-        current_index = 0
+        self.my_deck  = []
+        # current_index = 0
 
         # Set up title and a fixed size
         self.setWindowTitle("Nebula Flash")
@@ -31,8 +31,8 @@ class StackedWindows(QMainWindow):
         self.stacked_layout = QStackedLayout()
 
         # My window instances
-        self.welcome_window = WelcomeWindow(self.change_to_main_window, my_deck)
-        self.main_window = MainWindow(my_deck)
+        self.welcome_window = WelcomeWindow(self.change_to_main_window, self.my_deck)
+        self.main_window = MainWindow(self.my_deck)
 
         # Add my windows to the stack layout
         self.stacked_layout.addWidget(self.welcome_window)
@@ -54,9 +54,7 @@ class StackedWindows(QMainWindow):
         self.stacked_layout.setCurrentWidget(self.welcome_window)
 
         
-        
-
-
+# Show application
 app = QApplication([])
 main_window = StackedWindows()
 main_window.show()
