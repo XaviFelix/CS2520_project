@@ -1,4 +1,3 @@
-# import tkinter as tk
 from tkinter import filedialog
 
 from PyQt6.QtCore import QSize, Qt
@@ -6,7 +5,7 @@ from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButt
 # from place_holder import Color 
 
 class WelcomeWindow(QWidget):
-    def __init__(self, switch_to_main, deck):
+    def __init__(self, switch_to_main, switch_to_question_window, deck):
         super().__init__()
 
         self.deck = deck
@@ -36,11 +35,12 @@ class WelcomeWindow(QWidget):
         # Add HBox (that contains buttons) to VBox
         vertical_box.addLayout(horizontal_box)
 
-        # If open existing is clicked then it finds file and changes window:
+        # If open existing is clicked then it finds file and changes window: might need a bool
         open_existing_btn.clicked.connect(switch_to_main)
         open_existing_btn.clicked.connect(self.open_existing_deck)
 
         # If create new is clicked then it changes window and creates a new deck:
+        create_new_btn.clicked.connect(switch_to_question_window)
         create_new_btn.clicked.connect(self.create_new_deck)
 
         self.setLayout(vertical_box)
@@ -72,3 +72,5 @@ class WelcomeWindow(QWidget):
     # TODO: Finish this method
     def create_new_deck(self):
         print("Creating new deck")
+
+

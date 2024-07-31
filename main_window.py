@@ -6,7 +6,7 @@ from place_holder import Color
 from flashcard_widget import FlashCard
 
 class MainWindow(QWidget):
-    def __init__(self, deck):
+    def __init__(self, switch_to_question_window,  deck):
         super().__init__()
 
         # Create list and flashcard instance
@@ -33,6 +33,9 @@ class MainWindow(QWidget):
         next_btn.clicked.connect(self.next_card)
         back_btn.clicked.connect(self.previous_card)
         open_existing_btn.clicked.connect(self.open_existing_deck)
+
+        create_new_btn.clicked.connect(switch_to_question_window)
+        create_new_btn.clicked.connect(self.create_a_deck)
 
 
         # Add buttons to the first button layout
@@ -65,7 +68,10 @@ class MainWindow(QWidget):
         print("previous card")
 
         # Wraps index to the end
-        self.current_index = (self.current_index - 1) % len(self.deck)
+        self.current_index -= 1
+        if self.current_index < 0:
+            self.current_index = len(self.deck) - 1
+                
         self.flashcard.change_flashcard(self.deck[self.current_index][0], self.deck[self.current_index][1])
 
     # Open another deck of flashcards
@@ -99,6 +105,9 @@ class MainWindow(QWidget):
         
         # Print deck to console for debugging purposes
         print("Deck:", self.deck)
+
+    def create_a_deck(self):
+        print("Creating new deck")
 
 
     
