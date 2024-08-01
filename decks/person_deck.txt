@@ -1,3 +1,0 @@
-What is your name?,Xavier
-What is the color of the sky?,Blue
-What is your favorite car?,Mustang

@@ -90,7 +90,7 @@ class MainWindow(QWidget):
 
                 # Line gets split to create a key,value pair for dictionary (deck)
                 for line in file:
-                    parts = line.strip().split(',', 1)  
+                    parts = line.strip().split('^', 1)  
                     if len(parts) == 2:
                         question, answer = parts
                         self.deck.append((question, answer))

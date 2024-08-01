@@ -1,4 +1,7 @@
-what is the purpose of a waterpump?,To pump waterpump
-how many wheels do cars have?,Cars can have at least 3 wheels but mainly 4
-does it rain in side of cars?, only some convertable cars suffer rain inside
-will it be okay to change the oil 1 time a year?,No, the oil should be changed often
+What type of car do you like?^Mustang
+Do you like red cars?^Yes they are fast
+how many wheels do cars typically have?^4 wheels
+How fast does a super car go?^Really fast
+Cars are fast, which one is the fastest?^The fastest car is the one that is first
+What car is the sloweset of them all?^The car that is in last place
+Which car is the most coolest car around?^The ZR1 Corvette

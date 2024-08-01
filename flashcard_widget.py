@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 
 class FlashCard(QWidget):
     def __init__(self, question="Deck has been loaded!", answer="Pess the next button"):
@@ -11,6 +12,11 @@ class FlashCard(QWidget):
         # Initialize the label
         self.label = QLabel(self.question)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        # Might want to add some font and font sizing here:
+        font = QFont()
+        font.setPointSize(12)
+        self.label.setFont(font)
 
         # Set up layout for the FlashCard widget
         layout = QVBoxLayout()

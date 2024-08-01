@@ -17,6 +17,7 @@ class QuestionWindow(QWidget):
         # Create QLineEdit, I need two
         self.question_box = QLineEdit(parent=self)
         self.answer_box = QLineEdit(parent=self)
+        self.answer_box.returnPressed.connect(self.insert_card)
         self.deck_name_box = QLineEdit(parent=self)
 
         # Set fixed height for QLineEdit instances
@@ -38,9 +39,9 @@ class QuestionWindow(QWidget):
         self.deck_name_box.setFont(font)
 
         # Create my Buttons
-        self.open_existing_btn = QPushButton("Open existing deck")
+        self.open_existing_btn = QPushButton("Open existing")
         self.insert_card_btn  = QPushButton("Insert card")
-        self.finish_btn = QPushButton("Finish creating the deck")
+        self.finish_btn = QPushButton("Finish deck")
 
         # Button functionality
         self.open_existing_btn.clicked.connect(self.open_existing_deck)
@@ -107,7 +108,7 @@ class QuestionWindow(QWidget):
         question_text = self.question_box.text()
         answer_text = self.answer_box.text()
 
-        card_format = question_text + "," + answer_text
+        card_format = question_text + "^" + answer_text
 
         with open(file_path, mode) as file:
             file.write(card_format + '\n')

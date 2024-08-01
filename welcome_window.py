@@ -2,7 +2,7 @@ from tkinter import filedialog
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButton
-# from place_holder import Color 
+from PyQt6.QtGui import QFont
 
 class WelcomeWindow(QWidget):
     def __init__(self, switch_to_main, switch_to_question_window, deck):
@@ -13,6 +13,12 @@ class WelcomeWindow(QWidget):
         # Welcome message, set the alignment of it as well
         self.welcome_message = QLabel("Welcome to the Nebula FlashCard app")
         self.welcome_message.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        # Might want to add some font and font sizing here:
+        font = QFont()
+        font.setPointSize(12)
+        self.welcome_message.setFont(font)
+
 
         # Set the fixed sizing of the MainWindow
         self.setFixedSize(QSize(700, 400))
@@ -61,7 +67,7 @@ class WelcomeWindow(QWidget):
 
                 # Line gets split to create a key,value pair for dictionary (deck)
                 for line in file:
-                    parts = line.strip().split(',', 1)  
+                    parts = line.strip().split('^', 1)  
                     if len(parts) == 2:
                         question, answer = parts
                         self.deck.append((question, answer))
