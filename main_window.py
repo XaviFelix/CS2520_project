@@ -13,7 +13,7 @@ class MainWindow(QWidget):
         self.deck = deck
         self.current_index = 0
         self.flashcard = FlashCard()
-        self.setWindowTitle("Nebula Flash")
+        self.setWindowTitle("Nebula")
 
         # Set the fixed sizing of the MainWindow
         self.setFixedSize(QSize(700, 400))

@@ -1,15 +1,17 @@
 import os
 
-from PyQt6.QtWidgets import QApplication, QFormLayout, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QSpacerItem, QSizePolicy
+from PyQt6.QtWidgets import QApplication, QFormLayout, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QSpacerItem, QSizePolicy, QMessageBox
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
 
 class QuestionWindow(QWidget):
-    def __init__(self, deck):
+    def __init__(self, main_window, change_to_main_window, deck):
         super().__init__()
 
         # Referencing the shared list
         self.deck = deck
+
+        self.main_window = main_window
         
         # Set the fixed sizing of the MainWindow
         self.setFixedSize(QSize(700, 400))
@@ -44,9 +46,14 @@ class QuestionWindow(QWidget):
         self.finish_btn = QPushButton("Finish deck")
 
         # Button functionality
+        self.open_existing_btn.clicked.connect(change_to_main_window)
         self.open_existing_btn.clicked.connect(self.open_existing_deck)
-        self.insert_card_btn.clicked.connect(self.insert_card)
+
+        # TODO: Finish the funcitonality of this:
+        # self.finish_deck_creation.connect(change_to_main_window)
         self.finish_btn.clicked.connect(self.finish_deck_creation)
+
+        self.insert_card_btn.clicked.connect(self.insert_card)
 
         # Add buttons to HBox
         h_box = QHBoxLayout()
@@ -82,24 +89,30 @@ class QuestionWindow(QWidget):
 
     # Methods for my buttons
     def open_existing_deck(self):
-        print("Opening Existing deck")
-
-
+            print("Opening from Question window")
+            self.main_window.open_existing_deck()
+    
     # TODO: If boxes don't have text then don't add to the file!
     # Fix this
     def insert_card(self):
-        print("Question Inserted")
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-        deck_directory = "decks"
-        deck_name = self.deck_name_box.text() + ".txt"
 
-        
-        file_path = os.path.join(current_directory, deck_directory, deck_name)
-
-        if os.path.exists(file_path):
-            self.collect_data(file_path, 'a')
+        if not self.question_box.text() or not self.answer_box.text() or not self.deck_name_box:
+            QMessageBox.warning(self, "Warning", "Onen or more input fields are empty!")
         else:
-            self.collect_data(file_path, 'w')
+            print("Question Inserted")
+            current_directory = os.path.dirname(os.path.abspath(__file__))
+            deck_directory = "decks"
+            deck_name = self.deck_name_box.text() + ".txt"
+
+            file_path = os.path.join(current_directory, deck_directory, deck_name)
+
+            if not os.path.exists(os.path.join(current_directory, deck_directory)):
+                os.makedirs(os.path.join(current_directory, deck_directory))
+
+            if os.path.exists(file_path):
+                self.collect_data(file_path, 'a')
+            else:
+                self.collect_data(file_path, 'w')
 
         self.question_box.clear()
         self.answer_box.clear()
@@ -113,8 +126,6 @@ class QuestionWindow(QWidget):
         with open(file_path, mode) as file:
             file.write(card_format + '\n')
                 
-
-
     def finish_deck_creation(self):
         print("Deck has been created!")
         

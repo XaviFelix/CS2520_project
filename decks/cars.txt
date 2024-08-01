@@ -5,3 +5,11 @@ How fast does a super car go?^Really fast
 Cars are fast, which one is the fastest?^The fastest car is the one that is first
 What car is the sloweset of them all?^The car that is in last place
 Which car is the most coolest car around?^The ZR1 Corvette
+This is not empty is it?^No its not
+what is goin gon here?^
+color of car?^green
+What color is the car down the street?^White
+How many cylinders do V8 engines have?^8 cylinders
+Are V8s inline?^No they are ordered in a V like form
+question?^answer
+another question?^yes

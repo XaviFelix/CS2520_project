@@ -1,1 +1,4 @@
 What type of bed is big enough for at least 2 people?^A Queen sized bed
+What type of bed can only hold one person?^A bed that can only have room for one person, duh
+How many legs do beds have?^4 legs
+What kind of bed frame do you have?^I have a sturdy bed frame
