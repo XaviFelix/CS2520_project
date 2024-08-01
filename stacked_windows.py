@@ -33,7 +33,7 @@ class StackedWindows(QMainWindow):
         # My window instances
         self.welcome_window = WelcomeWindow(self.change_to_main_window, self.change_to_question_window, self.my_deck)
         self.main_window = MainWindow(self.change_to_question_window, self.my_deck)
-        self.question_window = QuestionWindow() #This needs to reference a list, 
+        self.question_window = QuestionWindow(self.my_deck) 
 
         # Add my windows to the stack layout
         self.stacked_layout.addWidget(self.welcome_window)
