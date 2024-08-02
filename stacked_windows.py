@@ -17,8 +17,7 @@ class StackedWindows(QMainWindow):
 
         # A shared dictionary
         self.my_deck  = []
-        # current_index = 0
-
+        
         # Set up title and a fixed size
         self.setWindowTitle("Nebula")
         self.setFixedSize(QSize(700,400))

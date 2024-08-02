@@ -12,6 +12,8 @@ class FlashCard(QWidget):
         # Initialize the label
         self.label = QLabel(self.question)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label.setWordWrap(True)
+        self.label.setFixedWidth(600)
 
         # Might want to add some font and font sizing here:
         font = QFont()
@@ -20,7 +22,7 @@ class FlashCard(QWidget):
 
         # Set up layout for the FlashCard widget
         layout = QVBoxLayout()
-        layout.addWidget(self.label)
+        layout.addWidget(self.label, alignment=Qt.AlignmentFlag.AlignHCenter)
         self.setLayout(layout)
 
         # Event for mouse click

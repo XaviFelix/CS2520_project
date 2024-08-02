@@ -26,16 +26,14 @@ class MainWindow(QWidget):
         # Create the buttons
         open_existing_btn = QPushButton("Open existing deck")
         create_new_btn = QPushButton("Create new deck")
-        back_btn = QPushButton("Back")
+        back_btn = QPushButton("Previous")
         next_btn = QPushButton("Next")
 
         # The button functions
         next_btn.clicked.connect(self.next_card)
         back_btn.clicked.connect(self.previous_card)
         open_existing_btn.clicked.connect(self.open_existing_deck)
-
         create_new_btn.clicked.connect(switch_to_question_window)
-        create_new_btn.clicked.connect(self.create_a_deck)
 
 
         # Add buttons to the first button layout
@@ -106,8 +104,13 @@ class MainWindow(QWidget):
         # Print deck to console for debugging purposes
         print("Deck:", self.deck)
 
-    def create_a_deck(self):
-        print("Creating new deck")
+    
+    # NOTE: I wanted to switch windows using this but i'm doing that already without this
+    # TODO: Figure out what functinoality i should add here if any
+    # def create_a_deck(self):
+    #     print("Creating new deck")
+
+
 
 
     

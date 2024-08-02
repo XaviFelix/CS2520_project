@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QApplication, QFormLayout, QLineEdit, QPushButton, Q
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
 
+
 class QuestionWindow(QWidget):
     def __init__(self, main_window, change_to_main_window, deck):
         super().__init__()
@@ -49,8 +50,7 @@ class QuestionWindow(QWidget):
         self.open_existing_btn.clicked.connect(change_to_main_window)
         self.open_existing_btn.clicked.connect(self.open_existing_deck)
 
-        # TODO: Finish the funcitonality of this:
-        # self.finish_deck_creation.connect(change_to_main_window)
+        self.finish_btn.clicked.connect(change_to_main_window)
         self.finish_btn.clicked.connect(self.finish_deck_creation)
 
         self.insert_card_btn.clicked.connect(self.insert_card)
@@ -92,15 +92,15 @@ class QuestionWindow(QWidget):
             print("Opening from Question window")
             self.main_window.open_existing_deck()
     
-    # TODO: If boxes don't have text then don't add to the file!
-    # Fix this
+    
     def insert_card(self):
-
         if not self.question_box.text() or not self.answer_box.text() or not self.deck_name_box:
             QMessageBox.warning(self, "Warning", "Onen or more input fields are empty!")
         else:
             print("Question Inserted")
             current_directory = os.path.dirname(os.path.abspath(__file__))
+
+            # NOTE: This only works for my computer. Delete so that it works in current directory
             deck_directory = "decks"
             deck_name = self.deck_name_box.text() + ".txt"
 
@@ -117,6 +117,7 @@ class QuestionWindow(QWidget):
         self.question_box.clear()
         self.answer_box.clear()
 
+    # Extracts text and adds them to a file in a specific format: Q^A
     def collect_data(self, file_path, mode):
         question_text = self.question_box.text()
         answer_text = self.answer_box.text()
@@ -125,9 +126,33 @@ class QuestionWindow(QWidget):
 
         with open(file_path, mode) as file:
             file.write(card_format + '\n')
-                
+
+    # TODO: Change to main_window, but load the created deck        
     def finish_deck_creation(self):
         print("Deck has been created!")
+        self.deck.clear()
+
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+
+        # NOTE: Tis only works in my computer. delete so that it works only in current directory
+        deck_directory = "decks"
+        deck_name = self.deck_name_box.text() + ".txt"
+
+        current_deck_path = os.path.join(current_directory, deck_directory, deck_name)
+        print(current_deck_path)
+
+        with open(current_deck_path, 'r') as file:
+            for line in file:
+                parts = line.strip().split('^', 1)  
+                if len(parts) == 2:
+                    question, answer = parts
+                    self.deck.append((question, answer))
+
+        print("Deck:", self.deck)
+
+
+        
+
         
 
 # For debugging puposes
