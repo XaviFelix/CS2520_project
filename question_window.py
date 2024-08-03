@@ -112,8 +112,12 @@ class QuestionWindow(QWidget):
 
             if os.path.exists(file_path):
                 self.collect_data(file_path, 'a')
+                self.question_box.clear()
+                self.answer_box.clear()
             else:
                 self.collect_data(file_path, 'w')
+                self.question_box.clear()
+                self.answer_box.clear()
 
         # self.question_box.clear()
         # self.answer_box.clear()
