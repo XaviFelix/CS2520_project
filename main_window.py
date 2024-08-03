@@ -1,7 +1,7 @@
 from tkinter import filedialog
 
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QWidget, QPushButton, QLabel, QComboBox
+from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QWidget, QPushButton, QComboBox
 from place_holder import Color
 from flashcard_widget import FlashCard
 
@@ -31,7 +31,7 @@ class MainWindow(QWidget):
 
         # TODO: Create QBox
         self.qbox = QComboBox()
-        self.qbox.setFixedWidth(200)
+        self.qbox.setFixedWidth(320)
         self.populate_qbox()
         self.qbox.currentIndexChanged.connect(self.update_flashcard)
 
@@ -47,7 +47,7 @@ class MainWindow(QWidget):
         horizontal_box_btns1.addWidget(open_existing_btn)
         horizontal_box_btns1.addWidget(self.qbox) # Test to see if this works
         horizontal_box_btns1.addWidget(create_new_btn)
-        horizontal_box_btns1.setSpacing(100)
+        horizontal_box_btns1.setSpacing(50)
 
         # Add buttons to the second button layout
         horizontal_box_btns2.addWidget(back_btn)
@@ -59,6 +59,7 @@ class MainWindow(QWidget):
         self.vertical_box.addWidget(self.flashcard)
         self.vertical_box.addLayout(horizontal_box_btns2)
 
+        self.vertical_box.setAlignment(Qt.AlignmentFlag.AlignAbsolute)
         self.setLayout(self.vertical_box)
 
     # increments the index in the list and changes the flashcard
