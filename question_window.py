@@ -1,8 +1,9 @@
 import os
 
-from PyQt6.QtWidgets import QApplication, QFormLayout, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QSpacerItem, QSizePolicy, QMessageBox
-from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QApplication, QFormLayout, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox
+from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QFont
+from flashcard_widget import FlashCard
 
 
 class QuestionWindow(QWidget):
@@ -62,30 +63,27 @@ class QuestionWindow(QWidget):
         h_box.addWidget(self.finish_btn)
         h_box.setSpacing(200)
 
-        # Create QFormLayout for my QEditLine instances
+        # Form layout for QLineEdits
         q_layout = QFormLayout()
         q_layout.addRow("Name of Deck:", self.deck_name_box)
         q_layout.addRow("Question:", self.question_box)
         q_layout.addRow("Answer:", self.answer_box)
 
-        # Create an outer HBoxLayout to center the QFormLayout horizontally
-        h_center_layout = QHBoxLayout()
-        h_center_layout.addSpacerItem(QSpacerItem(1, 1, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
-        h_center_layout.addLayout(q_layout)
-        h_center_layout.addSpacerItem(QSpacerItem(1, 1, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        # Center the form layout horizontally
+        hq_box = QHBoxLayout()
+        hq_box.addStretch()
+        hq_box.addLayout(q_layout)
+        hq_box.addStretch()
 
-        # Create an outer VBoxLayout to center the QFormLayout vertically
-        v_center_layout = QVBoxLayout()
-        v_center_layout.addSpacerItem(QSpacerItem(1, 1, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
-        v_center_layout.addLayout(h_center_layout)
-        v_center_layout.addSpacerItem(QSpacerItem(1, 1, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
+        # Main vertical layout
+        v_box = QVBoxLayout()
+        v_box.addStretch()
+        v_box.addLayout(hq_box)
+        v_box.addStretch()
+        v_box.addLayout(h_box)
 
-        # Creating a layout for this widget and add everything here:
-        main_v_box = QVBoxLayout()
-        main_v_box.addLayout(v_center_layout)
-        main_v_box.addLayout(h_box)
-
-        self.setLayout(main_v_box)
+        v_box.setAlignment(Qt.AlignmentFlag.AlignAbsolute)
+        self.setLayout(v_box)
 
     # Methods for my buttons
     def open_existing_deck(self):
@@ -148,7 +146,17 @@ class QuestionWindow(QWidget):
                     question, answer = parts
                     self.deck.append((question, answer))
 
+        # deck has been updted, remove old widget and delete
+        self.main_window.vertical_box.removeWidget(self.main_window.flashcard)
+        self.main_window.flashcard.deleteLater()
+
+        # Create new instance of a flashcard and set it in the Vbox
+        self.main_window.flashcard = FlashCard()
+        self.main_window.vertical_box.insertWidget(1, self.main_window.flashcard)
+
         print("Deck:", self.deck)
+        #TODO: Check if this works:
+        self.main_window.populate_qbox()
 
 
         
