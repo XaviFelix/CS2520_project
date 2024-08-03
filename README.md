@@ -1,7 +1,7 @@
 # CS2520_project: Flash Card Program (Nebula)
 
 ## Overview
-This repository contains the code for my flashcard program. This project aims to explore the nuances 
+This repository contains the code for my flashcard program named `Nebula`. This project aims to explore the nuances 
 behind the PyQt6 library. A library focused on building graphical user interfaces via Python. By 
 combining fundamental princicples behind widgets, layouts and signals I was able to create a basic
 flashcard program as not only a project for learning, but as a tool for personal use.
