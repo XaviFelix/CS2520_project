@@ -5,10 +5,12 @@ from PyQt6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QWidget, QPushButt
 from PyQt6.QtGui import QFont
 
 class WelcomeWindow(QWidget):
-    def __init__(self, switch_to_main, switch_to_question_window, deck):
+    def __init__(self, main_window, switch_to_main, switch_to_question_window, deck):
         super().__init__()
 
         self.deck = deck
+
+        self.main_window = main_window
 
         # Welcome message, set the alignment of it as well
         self.welcome_message = QLabel("Welcome to the Nebula FlashCard app")
@@ -74,6 +76,8 @@ class WelcomeWindow(QWidget):
         
         # Print deck to console for debugging purposes
         print("Deck:", self.deck)
+        #TODO:
+        self.main_window.populate_qbox()
 
     # TODO: Finish this method
     def create_new_deck(self):

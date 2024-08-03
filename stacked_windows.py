@@ -30,9 +30,11 @@ class StackedWindows(QMainWindow):
         self.stacked_layout = QStackedLayout()
 
         # My window instances
-        self.welcome_window = WelcomeWindow(self.change_to_main_window, self.change_to_question_window, self.my_deck)
         self.main_window = MainWindow(self.change_to_question_window, self.my_deck)
         self.question_window = QuestionWindow(self.main_window, self.change_to_main_window, self.my_deck)
+
+        # TODO: Need a main window instance in order to reference the Qlabel method
+        self.welcome_window = WelcomeWindow(self.main_window, self.change_to_main_window, self.change_to_question_window, self.my_deck)
 
         # Add my windows to the stack layout
         self.stacked_layout.addWidget(self.welcome_window)
